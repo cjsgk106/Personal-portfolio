@@ -1,1 +1,10 @@
+
+### Django ###
 *.pyc
+*.log
+*.pot
+__pycahce__/
+local.settings.py
+db.sqlite3
+/media
+/static
