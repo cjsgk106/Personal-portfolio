@@ -24,6 +24,12 @@
         user-select: none;
       }
 
+      header ul {
+        display: inline-block;
+        position: relative;
+        margin-left:-35px;
+      }
+
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
@@ -35,14 +41,24 @@
   <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Gerrard Kim</a>
+      <a class="navbar-brand" href="{% url 'home' %}">Gerrard Kim</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <div class="navbar-nav ml-auto">
       <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
-      <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog<span class="sr-only">(current)</span></a>
+      <ul class="nav-item dropdown">
+        <a class="nav-item nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="">
+          Blog<span class="sr-only">(current)</span></a>
+
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{% url 'sqlblog' %}">SQL</a>
+                <a class="dropdown-item" href="{% url 'rblog' %}">R<span class="sr-only">(current)</span></a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </ul>
       <a class="nav-item nav-link" href="{% static 'resume.pdf' %}">Resume</a>
       <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
     </div>
@@ -56,7 +72,7 @@
   <h2>Latest Posts</h2>
   <hr />
 
-  {% for post in blogs.all %}
+  {% for post in rlan.all %}
   <div class="row mb-2">
     <div class="col-md-6">
       <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -65,7 +81,7 @@
           <h3 class="mb-0">{{ post.title }}</h3>
           <div class="mb-1 text-muted">{{ post.customized_date }}</div>
           <p class="card-text mb-auto">{{ post.summary }}</p>
-          <a href="#" class="stretched-link">Continue reading</a>
+          <a href="{% url 'rdetail' post.id %}" class="stretched-link">Continue reading</a>
         </div>
         <div class="col-auto d-none d-lg-block">
           <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></svg>
@@ -82,8 +98,8 @@
     <p class="float-right">
       <a href="#">Back to top</a>
     </p>
-    <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-    <p>New to Bootstrap? <a href="https://getbootstrap.com/">Visit the homepage</a> or read our <a href="/docs/4.3/getting-started/introduction/">getting started guide</a>.</p>
+    <br />
+    <p class="text-center">&copy; Hye Min Kim</p>
   </div>
 </footer>
 

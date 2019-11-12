@@ -1,7 +1,6 @@
-
 <!doctype html>
+{% load static %}
 <html lang="en">
-{% load staticfiles %}
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,6 +10,7 @@
     <title>Album example · Bootstrap</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}" type="text/css">
 
     <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -25,11 +25,12 @@
         user-select: none;
       }
 
-    header ul {
-      display: inline-block;
-      position: relative;
-      margin-left:-35px;
-    }
+      header ul {
+        display: inline-block;
+        position: relative;
+        margin-left:-35px;
+      }
+
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
@@ -47,14 +48,14 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <div class="navbar-nav ml-auto">
-      <a class="nav-item nav-link active" href="{% url 'home' %}">Home<span class="sr-only">(current)</span></a>
-
+      <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
       <ul class="nav-item dropdown">
-        <a class="nav-item nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href = "">Blog</a>
+        <a class="nav-item nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="">
+          Blog<span class="sr-only">(current)</span></a>
 
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{% url 'sqlblog' %}">SQL</a>
-                <a class="dropdown-item" href="{% url 'rblog' %}">R</a>
+                <a class="dropdown-item" href="{% url 'rblog' %}">R<span class="sr-only">(current)</span></a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Something else here</a>
               </div>
@@ -66,61 +67,29 @@
     </nav>
 </header>
 
-
+<br>
 
 <main role="main">
-
-  <section class="jumbotron text-center">
-    <div class="container" >
-    <div class="row">
-
-      <div class="col-md-5" style="align-self:center">
-        <img src="{% static 'me.jpg' %}" height="400" width="250"/>
-      </div>
-
-      <div class="col-md-5" style="align-self:center">
-      <h1 class="jumbotron-heading">Gerrard Kim</h1>
-      <p class="lead text-muted">With data-driven insights and problem-solving skills, I strive for greatness and success.</p>
-      <p>
-        <a href="cjsgk106@gmail.com" class="btn btn-primary my-2">Email me</a>
-      </p>
-      </div>
-    </div>
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row">
+  <div class="container">
+    <h1 class="text-center">Blog</h1>
+    <br />
+    <br />
+    <h2>{{ rlan_detail.title }}</h2>
+    <hr />
+    <small class="text-muted">{{ rlan_detail.customized_date }}</small>
+    <br />
+    <br />
+    {% if rlan_detail.image %}
+      <img class="img-fluid" src="{{ rlan_detail.image.url }}" height=400 width=400 />
+    {% endif %}
+    <br />
+    <p id="textbody">{{ rlan_detail.body|safe }}</p>
 
 
-        {% for job in jobs.all %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img class="card-img" src="{{ job.image.url }}" />
-            <div class="card-body">
-              <h4 class="heading">{{ job.title }}</h4>
-              <p class="card-text">{{ job.summary }}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <form>
-                    <button type="submit" class="btn btn-sm btn-outline-secondary" formaction="{% url 'projectdetail' job.id %}">View</button>
-                  </form>
-                </div>
-                <small class="text-muted">by Gerrard</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-
-      </div>
-    </div>
-  </div>
 
 </main>
 
+<hr />
 <footer class="text-muted">
   <div class="container">
     <p class="float-right">

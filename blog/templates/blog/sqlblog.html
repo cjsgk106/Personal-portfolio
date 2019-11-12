@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 {% load staticfiles %}
@@ -25,11 +24,12 @@
         user-select: none;
       }
 
-    header ul {
-      display: inline-block;
-      position: relative;
-      margin-left:-35px;
-    }
+      header ul {
+        display: inline-block;
+        position: relative;
+        margin-left:-35px;
+      }
+
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
@@ -47,13 +47,13 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <div class="navbar-nav ml-auto">
-      <a class="nav-item nav-link active" href="{% url 'home' %}">Home<span class="sr-only">(current)</span></a>
-
+      <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
       <ul class="nav-item dropdown">
-        <a class="nav-item nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href = "">Blog</a>
+        <a class="nav-item nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="">
+          Blog<span class="sr-only">(current)</span></a>
 
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{% url 'sqlblog' %}">SQL</a>
+                <a class="dropdown-item" href="{% url 'sqlblog' %}">SQL<span class="sr-only">(current)</span></a>
                 <a class="dropdown-item" href="{% url 'rblog' %}">R</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Something else here</a>
@@ -66,58 +66,30 @@
     </nav>
 </header>
 
-
+<br>
 
 <main role="main">
+  <h2>Latest Posts</h2>
+  <hr />
 
-  <section class="jumbotron text-center">
-    <div class="container" >
-    <div class="row">
-
-      <div class="col-md-5" style="align-self:center">
-        <img src="{% static 'me.jpg' %}" height="400" width="250"/>
-      </div>
-
-      <div class="col-md-5" style="align-self:center">
-      <h1 class="jumbotron-heading">Gerrard Kim</h1>
-      <p class="lead text-muted">With data-driven insights and problem-solving skills, I strive for greatness and success.</p>
-      <p>
-        <a href="cjsgk106@gmail.com" class="btn btn-primary my-2">Email me</a>
-      </p>
-      </div>
-    </div>
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row">
-
-
-        {% for job in jobs.all %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img class="card-img" src="{{ job.image.url }}" />
-            <div class="card-body">
-              <h4 class="heading">{{ job.title }}</h4>
-              <p class="card-text">{{ job.summary }}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <form>
-                    <button type="submit" class="btn btn-sm btn-outline-secondary" formaction="{% url 'projectdetail' job.id %}">View</button>
-                  </form>
-                </div>
-                <small class="text-muted">by Gerrard</small>
-              </div>
-            </div>
-          </div>
+  {% for post in sql.all %}
+  <div class="row mb-2">
+    <div class="col-md-6">
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-in3line-block mb-2 text-primary">World</strong>
+          <h3 class="mb-0">{{ post.title }}</h3>
+          <div class="mb-1 text-muted">{{ post.customized_date }}</div>
+          <p class="card-text mb-auto">{{ post.summary }}</p>
+          <a href="{% url 'sqldetail' post.id %}" class="stretched-link">Continue reading</a>
         </div>
-        {% endfor %}
-
+        <div class="col-auto d-none d-lg-block">
+          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></svg>
+        </div>
       </div>
     </div>
   </div>
+  {% endfor %}
 
 </main>
 
