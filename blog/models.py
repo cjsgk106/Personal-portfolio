@@ -30,16 +30,17 @@ class Mysql(models.Model):
     def customized_date(self):
         return self.pub_date.strftime('%b %e %Y')
 
-# Create your models here.
-# title
-# pub_date
-# body
-# image
+class Mypy(models.Model):
+    title = models.CharField(max_length=255)
+    pub_date = models.DateTimeField()
+    body = models.TextField()
+    image = models.ImageField(upload_to='images/', blank=True)
 
-# Add the Blog app to the settings
+    def __str__(self):
+        return self.title
 
-# Create a migration
+    def summary(self):
+        return self.body[:50] + '...'
 
-# Migrate
-
-# add to the admin
+    def customized_date(self):
+        return self.pub_date.strftime('%b %e %Y')

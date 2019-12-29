@@ -49,11 +49,13 @@
         <div class="navbar-nav ml-auto">
       <a class="nav-item nav-link active" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
       <ul class="nav-item dropdown">
-        <a class="nav-item nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="">Blog</a>
+        <a class="nav-item nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="">
+          Blog<span class="sr-only">(current)</span></a>
 
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{% url 'sqlblog' %}">SQL</a>
                 <a class="dropdown-item" href="{% url 'rblog' %}">R</a>
+                <a class="dropdown-item" href="{% url 'pyblog' %}">Python</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Something else here</a>
               </div>
@@ -89,8 +91,8 @@
     <p class="float-right">
       <a href="#">Back to top</a>
     </p>
-    <br />
-    <p class="text-center">&copy; Hye Min Kim</p>
+    <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+    <p>New to Bootstrap? <a href="https://getbootstrap.com/">Visit the homepage</a> or read our <a href="/docs/4.3/getting-started/introduction/">getting started guide</a>.</p>
   </div>
 </footer>
 
