@@ -25,6 +25,7 @@
         user-select: none;
       }
 
+
       header ul {
         display: inline-block;
         position: relative;
@@ -96,19 +97,19 @@
 
 
         {% for job in jobs.all reversed %}
-        <div class="col-md-4">
+        <div class="col-md-4 d-flex align-items-stretch">
           <div class="card mb-4 shadow-sm">
-            <img class="card-img" src="{{ job.image.url }}" />
-            <div class="card-body">
+            <img class="card-img flex-fill" src="{{ job.image.url }}"/>
+            <div class="card-body flex-fill">
               <h4 class="heading">{{ job.title }}</h4>
-              <h6 class="card-text">{{ job.language }} | {{ job.customized_date }}</h6>
+              <h6>{{ job.language }} | {{ job.customized_date }}</h6>
               <p class="card-text">{{ job.summary }}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button onclick="window.open('{{ job.url }}'); return false;" type="button" class="btn btn-sm btn-outline-secondary">View</button>
                   <button type="button" class="btn btn-sm btn-outline-secondary" disabled>Edit</button>
                 </div>
-                <a href="#"><i class="fa fa-github fa-lg" style="color:black"></i></a>
+                <a target= "_blank" href="{{ job.url }}"><i class="fa fa-github fa-lg" style="color:black"></i></a>
               </div>
             </div>
           </div>
