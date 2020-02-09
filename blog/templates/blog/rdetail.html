@@ -72,12 +72,15 @@
 
 <main role="main">
   <div class="container">
-    <h1 class="text-center">Blog</h1>
+    <h1 class="text-center">R</h1>
     <br />
     <br />
     <h2>{{ rlan_detail.title }}</h2>
     <hr />
     <small class="text-muted">{{ rlan_detail.customized_date }}</small>
+    <div class="btn-group">
+      <button onclick="window.history.back();return false;" type="button" class="btn btn-sm btn-outline-secondary">Back</button>
+    </div>
     <br />
     <br />
     {% if rlan_detail.image %}

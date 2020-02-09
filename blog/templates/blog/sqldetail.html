@@ -36,6 +36,10 @@
           font-size: 3.5rem;
         }
       }
+
+      .btn-group{
+        float:right;
+      }
     </style>
 
   </head>
@@ -72,12 +76,18 @@
 
 <main role="main">
   <div class="container">
-    <h1 class="text-center">Blog</h1>
+    <h1 class="text-center">SQL</h1>
     <br />
     <br />
     <h2>{{ sql_detail.title }}</h2>
     <hr />
+
     <small class="text-muted">{{ sql_detail.customized_date }}</small>
+
+    <div class="btn-group">
+      <button onclick="window.history.back();return false;" type="button" class="btn btn-sm btn-outline-secondary">Back</button>
+    </div>
+
     <br />
     <br />
     {% if sql_detail.image %}
@@ -86,8 +96,7 @@
     <br />
     <p id="textbody">{{ sql_detail.body|safe }}</p>
 
-
-
+  </div>
 </main>
 
 <hr />
